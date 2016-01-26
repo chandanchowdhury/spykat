@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+
+
+<Folder id="feat_10">
+    <name>SpyKat</name>
+        <Style id="stylesel_2">
+            <LineStyle id="substyle_4">
+                <color>ff0000ff</color>
+                <colorMode>normal</colorMode>
+                <width>3</width>
+            </LineStyle>
+            <PolyStyle id="substyle_5">
+                <color>32008000</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+
+
+    <!-- Starts: No-fly zone data-->
+    <!--
+    <NetworkLink id="feat_27">
+        <name>No-fly Boundary</name>
+        <Link id="link_0">
+            <refreshMode> onInterval </refreshMode>
+            <refreshInterval> 60 </refreshInterval>
+            <maxSessionLength> -1 </maxSessionLength>
+
+            <href>http://localhost:5000/fence.kml</href>
+
+        </Link>
+    </NetworkLink>
+    -->
+    <!-- End: No-fly zone data starts -->
+
+    <!-- Start: Static obstacle data -->
+    <NetworkLink id="feat_27">
+        <name>Static Obstacles</name>
+        <visibility>1</visibility>
+        <open>1</open>
+        <flyToView>1</flyToView>
+        <Link id="link_0">
+            <refreshMode> onInterval </refreshMode>
+            <refreshInterval> 60 </refreshInterval>
+            <maxSessionLength> -1 </maxSessionLength>
+
+            <href>http://localhost:5000/static.kml</href>
+
+        </Link>
+    </NetworkLink>
+    <!-- End: Static obstacle data -->
+
+
+    <!-- Start: Dynamic obstacle data -->
+    <NetworkLink id="feat_27">
+        <name>Dynamic Obstacles</name>
+        <visibility>1</visibility>
+        <open>1</open>
+        <Link id="link_0">
+            <refreshMode> onInterval </refreshMode>
+            <refreshInterval> 1 </refreshInterval>
+            <maxSessionLength> -1 </maxSessionLength>
+
+            <href>http://localhost:5000/dynamic.kml</href>
+
+        </Link>
+    </NetworkLink>
+    <!-- End: Dynamic obstacle data -->
+
+    <!-- Starts: Telemetry data-->
+    <!--
+    <NetworkLink id="feat_27">
+        <name>Telemetry</name>
+        <Link id="link_0">
+            <refreshMode> onInterval </refreshMode>
+            <refreshInterval> 1 </refreshInterval>
+            <maxSessionLength> -1 </maxSessionLength>
+
+            <href>http://localhost:5000/telemetry.kml</href>
+
+        </Link>
+    </NetworkLink>
+    -->
+    <!-- End: Telemetry data -->
+
+</Folder>
+
+</kml>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+
+<Style id="stylesel_2">
+    <LineStyle id="substyle_4">
+        <color>ff0000ff</color>
+        <colorMode>normal</colorMode>
+        <width>3</width>
+    </LineStyle>
+    <PolyStyle id="substyle_5">
+        <color>32008000</color>
+        <colorMode>normal</colorMode>
+        <fill>1</fill>
+        <outline>1</outline>
+    </PolyStyle>
+</Style>
+
+  <Placemark>
+    <name>Static Obstacles</name>
+
+    <Style id="yellowLineGreenPoly">
+      <LineStyle>
+        <color>7f00ffff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7f00ff00</color>
+      </PolyStyle>
+    </Style>
+
+    <Camera>
+        <longitude>{{ static_page_data.camera_view_longitude }}</longitude>
+        <latitude>{{ static_page_data.camera_view_latitude }}</latitude>
+        <altitude>{{ static_page_data.camera_view_altitude }}</altitude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <tilt>30</tilt>
+        <flyToView>1</flyToView>
+    </Camera>
+
+    {% for obstacle in static_obstacles_data  %}
+
+    <Polygon>
+      <extrude>1</extrude>
+      <altitudeMode>relativeToGround</altitudeMode>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            {{ obstacle.kml_data }}
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+
+    {% endfor %}
+
+  </Placemark>
+
+  <!-- -96.545594,39.202797,100 -->
+  <!--
+  -96.545494,39.202897,10
+  -96.545694,39.202897,10
+  -96.545694,39.202697,10
+  -96.545494,39.202697,10
+  -->
+</kml>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+
+<Folder id="feat_10">
+    <name>SpyKat</name>
+        <Style id="stylesel_2">
+            <LineStyle id="substyle_4">
+                <color>ff0000ff</color>
+                <colorMode>normal</colorMode>
+                <width>3</width>
+            </LineStyle>
+            <PolyStyle id="substyle_5">
+                <color>32008000</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+
+    <!-- Start: Static obstacle data -->
+    <NetworkLink id="feat_27">
+        <name>Static Obstacles</name>
+        <Link id="link_0">
+            <refreshMode> onInterval </refreshMode>
+            <refreshInterval> 60 </refreshInterval>
+            <maxSessionLength> -1 </maxSessionLength>
+
+            <href>http://localhost:5000/static.kml</href>
+
+        </Link>
+    </NetworkLink>
+    <!-- End: Static obstacle data -->
+
+
+
+</Folder>
+
+</kml>

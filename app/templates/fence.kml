@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+	    
+
+
+	<!-- Fly Zone starts  -->
+	<!-- Fly zone display properties -->
+		<Folder id="feat_10">
+	            <Style id="stylesel_2">
+	                <LineStyle id="substyle_4">
+	                    <color>ff0000ff</color>
+	                    <colorMode>normal</colorMode>
+	                    <width>3</width>
+	                </LineStyle>
+	                <PolyStyle id="substyle_5">
+	                    <color>32008000</color>
+	                    <colorMode>normal</colorMode>
+	                    <fill>1</fill>
+	                    <outline>1</outline>
+	                </PolyStyle>
+	            </Style>
+
+	        <!-- Display Fly Zone -->
+			<name>Fly Zones Boundry</name>
+	        <Placemark id="feat_11">
+	            <name>Fly Zone </name>
+	            <styleUrl>#stylesel_2</styleUrl>
+	            <Polygon id="geom_13">
+	                    <outerBoundaryIs>
+	                        <LinearRing id="geom_18">
+	                            <coordinates>
+	                            	-96.544711,39.203090,200.0
+	                            	-96.544762,39.202000,300.0
+	                            	-96.545752,39.201912,100.0
+	                            	-96.545828,39.202935,200.0
+	                            	-96.544711,39.203090,200.0
+	                            </coordinates>
+	                        </LinearRing>
+	                    </outerBoundaryIs>
+	            </Polygon>
+	        </Placemark>
+		</Folder>
+	<!-- Fly Zone ends  -->
+
+</kml>
