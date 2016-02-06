@@ -17,10 +17,18 @@ Confirm and install unixODBC
 '''
 #dbserver_ip = "localhost"
 #dbserver_ip = "10.131.83.195"
-dbserver_ip = "172.16.121.148"
+dbserver_ip = "192.168.15.82"
 dbserver_db = "AUVSI"
 dbserver_user = "spykat"
-dbserver_password = "pasword"
+dbserver_password = "spykat"
+
+
+#dbserver_ip = "172.16.121.148"
+#dbserver_db = "AUVSI"
+#dbserver_user = "spykat"
+#dbserver_password = "pasword"
+
+
 
 #odbc_conn_str = 'driver={SQL Server};SERVER=' + dbserver_ip + ';DATABASE=' + dbserver_db + ';'
 odbc_conn_str = 'DRIVER={FreeTDS};SERVER=' + dbserver_ip + ';PORT=1433;DATABASE=' + dbserver_db + ';'
@@ -34,17 +42,27 @@ print "\n\n", odbc_conn_str
 cnxn = pyodbc.connect(odbc_conn_str)
 cursor = cnxn.cursor()
 
-cursor.execute("""SELECT
-	Timestamp, Latitude, Longitude, Altitude, Azimuth, Pitch, Roll, CPUTimeStamp, Heading
-	FROM
-    SpyKat_MSSQL_FlightTelemetry_Data_Export
-    #FlightTelemetry
-    """)
+#live_query = "SELECT * FROM FlightTelemetry"
+
+live_query="SELECT TOP 1 Timestamp, Latitude, Longitude, Altitude, Azimuth, Pitch, Roll, CPUTimeStamp, Heading FROM FlightTelemetry  ORDER BY ID DESC"
+
+    #WHERE ID = (SELECT MAX(Timestamp) FROM FlightTelemetry)
+    #
+    #"""
+
+#cursor.execute("""SELECT
+#	Timestamp, Latitude, Longitude, Altitude, Azimuth, Pitch, Roll, CPUTimeStamp, Heading
+#	FROM
+#    SpyKat_MSSQL_FlightTelemetry_Data_Export
+#    WHERE convert(date, timestamp) = '2015-10-18'
+#    #FlightTelemetry
+#    """)
+cursor.execute(live_query)
 
 rows = cursor.fetchall()
 
 for row in rows:
-	print row.Timestamp, row.Longitude, row.Latitude, row.Heading
+	print row.Timestamp, row.Longitude, row.Latitude, row.Heading, row.Pitch, row.Roll
 
 cursor.close()
 cnxn.close()

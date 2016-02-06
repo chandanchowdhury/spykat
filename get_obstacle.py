@@ -1,6 +1,6 @@
 from interop import *
 
-server = 'http://172.16.121.152'
+server = 'http://172.16.121.153'
 username =  'spykat'
 password =  'spykat'
 

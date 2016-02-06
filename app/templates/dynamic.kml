@@ -18,9 +18,10 @@
 </Style>
 
   <Placemark>
-    <name>Dynamic Obstacles</name>
+    <name>Dynamic Obstacle ({{moving_obstacle_data}})</name>
     <styleUrl>#yellowLineGreenPoly</styleUrl>
     <Point>
+        <altitudeMode>relativeToGround</altitudeMode>
         <coordinates>
             <!-- -96.545494,39.202897,10 -->
             {{ moving_obstacle_data }}
