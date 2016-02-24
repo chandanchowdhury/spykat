@@ -11,35 +11,36 @@
       <PolyStyle>
         <color>7f00ff00</color>
       </PolyStyle>
+      <Icon>
+        <href>/static/uav.png</href>
+      </Icon>
     </Style>
 
 
     <Placemark>
       <name>Flight ({{ uav_current_telemetry }})</name>
-      <description>Details of flight path</description>
       <styleUrl>#yellowLineGreenPoly</styleUrl>
 
-    <Point>
-        <altitudeMode>relativeToGround</altitudeMode>
-        <coordinates>
-            {{ uav_current_telemetry }}
-          </coordinates>
-    </Point>
+        <Point>
+            <altitudeMode>relativeToGround</altitudeMode>
+            <coordinates>
+                {{ uav_current_telemetry }}
+            </coordinates>
+        </Point>
 
-      <!--
-      <LineString>
-        <extrude>0</extrude>
-        <tessellate>1</tessellate>
-        <altitudeMode>absolute</altitudeMode>
-        <coordinates>
-          -96545263,39.202420,100
-        </coordinates>
-      </LineString>
-      -->
 
 
     </Placemark>
-
-
   </Document>
 </kml>
+
+<!--
+<LineString>
+  <extrude>0</extrude>
+  <tessellate>1</tessellate>
+  <altitudeMode>absolute</altitudeMode>
+  <coordinates>
+    -96545263,39.202420,100
+  </coordinates>
+</LineString>
+-->

@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 
-
-<Style id="yellowLineGreenPoly">
-    <IconStyle>
+    <Document>
+    <Style id="dyn_obstacle_style">
+        <LineStyle>
+            <color>7f00ffff</color>
+            <width>4</width>
+        </LineStyle>
+        <PolyStyle>
+            <color>7f00ff00</color>
+        </PolyStyle>
         <Icon>
-            <href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>
+            <href>/static/dobs.png</href>
         </Icon>
-    </IconStyle>
-  <LineStyle>
-    <color>7f00ffff</color>
-    <width>4</width>
-  </LineStyle>
-  <PolyStyle>
-    <color>7f00ff00</color>
-  </PolyStyle>
-</Style>
+    </Style>
 
-  <Placemark>
-    <name>Dynamic Obstacle ({{moving_obstacle_data}})</name>
-    <styleUrl>#yellowLineGreenPoly</styleUrl>
-    <Point>
-        <altitudeMode>relativeToGround</altitudeMode>
-        <coordinates>
-            <!-- -96.545494,39.202897,10 -->
-            {{ moving_obstacle_data }}
-        </coordinates>
+    <Placemark>
+        <name>Dynamic Obstacle ({{moving_obstacle_data}})</name>
+        <styleUrl>#dyn_obstacle_style</styleUrl>
+        <Point>
+            <altitudeMode>relativeToGround</altitudeMode>
+            <coordinates>
+                {{ moving_obstacle_data }}
+            </coordinates>
+        </Point>
+    </Placemark>
+    </Document>
 
-    </Point>
-
-    <!--
-
-    <Polygon>
-      <extrude>1</extrude>
-      <altitudeMode>relativeToGround</altitudeMode>
-      <outerBoundaryIs>
-        <LinearRing>
-          <coordinates>
-            -96.545494,39.202897,10
-          </coordinates>
-        </LinearRing>
-      </outerBoundaryIs>
-    </Polygon>
-    -->
-  </Placemark>
 </kml>
+
+<!--
+  <Polygon>
+    <extrude>1</extrude>
+    <altitudeMode>relativeToGround</altitudeMode>
+    <outerBoundaryIs>
+      <LinearRing>
+        <coordinates>
+          -96.545494,39.202897,10
+        </coordinates>
+      </LinearRing>
+    </outerBoundaryIs>
+  </Polygon>
+  -->
+  <!-- -96.545494,39.202897,10 -->

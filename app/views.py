@@ -1,21 +1,21 @@
-from flask import render_template, Response
+from flask import render_template, Response, jsonify
 from app import app
 from interop import *
-import pyodbc
+import pyodbc, json
 
 from StaticObstacle import StaticObstacle
 
-server = 'http://172.16.121.154'
-#username =  'testadmin'
-#password =  'testpass'
-username = 'spykat'
-password = 'spykat'
+server = 'http://172.16.121.157'
+username =  'testadmin'
+password =  'testpass'
+#username = 'spykat'
+#password = 'spykat'
 
 camera_height_meter = 100
 
 #-------------
 # DB Server parameters
-dbserver_ip = "192.168.15.82"
+dbserver_ip = "192.168.15.11"
 #dbserver_ip = "172.16.121.148"
 
 dbserver_user = "spykat"
@@ -76,7 +76,8 @@ def dynamic_kml():
     stationary, moving = client.get_obstacles().result()
 
     for m in moving:
-        mo = ('%.6f' % m.longitude)  + ', ' + ('%.6f' % m.latitude) + ', ' + ('%.6f' % (m.altitude_msl * 0.3048Spy  ))
+        #mo = ('%.6f' % m.longitude)  + ', ' + ('%.6f' % m.latitude) + ', ' + ('%.6f' % (m.altitude_msl * 0.3048))
+        mo = ('%.7f' % m.longitude)  + ', ' + ('%.7f' % m.latitude) + ', ' + ('%.7f' % (m.altitude_msl))
 
     return Response(render_template('dynamic.kml',moving_obstacle_data=mo),
                         mimetype='text/xml')
@@ -112,11 +113,43 @@ def telemetry_kml():
     rows = cursor.fetchall()
 
     for row in rows:
-    	print row.Timestamp, row.Longitude, row.Latitude, row.Heading
-        uav_telemetry_data = ('%.6f' %row.Longitude) + ", " + ('%.6f' % row.Latitude) + ", " + ('%.1f' % (row.Altitude * 0.3048))
+    	#print row.Timestamp, row.Longitude, row.Latitude, row.Heading
+        #uav_telemetry_data = ('%.6f' %row.Longitude) + ", " + ('%.6f' % row.Latitude) + ", " + ('%.1f' % (row.Altitude * 0.3048))
+        uav_telemetry_data = ('%.5f' %row.Longitude) + ", " + ('%.5f' % row.Latitude) + ", " + ('%.5f' % (row.Altitude * 3))
     cursor.close()
     #cnxn.close()
 
     return Response(render_template('telemetry.kml',uav_current_telemetry=uav_telemetry_data),
     #return Response(render_template('telemetry.kml'),
                         mimetype='text/xml')
+
+
+'''
+ Servers obstacle data in JSON format
+
+ URL: /data/obstacles.json
+
+'''
+@app.route('/data/obstacles.json')
+def data_obstacles_json():
+    client = AsyncClient(server, username, password)
+
+    stationary, moving = client.get_obstacles().result()
+
+    json_data = {}
+    count = 0
+
+    for s in stationary:
+        print s.serialize()
+        count += 1
+        json_data["StaticObstacle-"+str(count)] = s.serialize()
+
+    count = 0
+    for m in moving:
+        print m.serialize()
+        count += 1
+        json_data["MovingObstacle-"+str(count)] = m.serialize()
+
+    #return Response(json_data,
+    #            mimetype='text/json')
+    return jsonify(json_data)
