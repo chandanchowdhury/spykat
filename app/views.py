@@ -5,7 +5,7 @@ import pyodbc, json
 
 from StaticObstacle import StaticObstacle
 
-server = 'http://172.16.121.157'
+server = 'http://172.16.121.159'
 username =  'testadmin'
 password =  'testpass'
 #username = 'spykat'
@@ -149,6 +149,10 @@ def data_obstacles_json():
         print m.serialize()
         count += 1
         json_data["MovingObstacle-"+str(count)] = m.serialize()
+
+    # dummy flight data for SDA
+    flightData = Telemetry(0,0,0,0)
+    json_data["FlightData"] = flightData.serialize()
 
     #return Response(json_data,
     #            mimetype='text/json')
